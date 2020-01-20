@@ -10,21 +10,24 @@ def save(data):
         json.dump(data, f_object, indent=2)
 
 
-def create_account(account):
+def create_account():
     data = load()
-    print("Please enter your new account #")
+    account = input("Please provide a new account number")
+    while not account.isnumeric():
+        account = input("That account number contains non-numeric entries, please numbers only!")
     data[account] = {"balance": []}
     save(data)
 
-def deposit(account, balance):
+def deposit(account):
     data = load()
-    data[account]["balance"].append(float(balance))
+    amount = input("Enter the amount you'd like to deposit")
+    data[account]["balance"].append(float(amount))
     save(data)
 
-def withdraw(account, balance):
+def withdraw(account):
     data = load()
     data[account]["balance"]
-    withdrawl = float(input("How much would you like to withdraw?"))
+    withdrawl = input("How much would you like to withdraw?")
     new_balance = data[account]["balance"] - withdrawl
 
     if withdrawl > balance:
@@ -36,4 +39,4 @@ def get_balance(account):
     data = load()
     balance = data[account]["balance"]
     # TODO: add error handling for len == 0
-    return sum(balance)
+    return sum(float(balance))

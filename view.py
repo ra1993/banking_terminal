@@ -1,3 +1,5 @@
+import model
+
 def get_option():
     print()
     print("Please choose an option")
@@ -8,23 +10,44 @@ def get_account():
     print("Enter account number:")
     return input()
 
-def show_homemenu(option):
-    get_account()
+def show_loginmenu():
+  account = input('Enter Account #: ')
+  # check if account number is in the json file
+  if not account.isnumeric():
+    print("Invalid input. Account Number must have numeric values")
+    return
+  data = model.load()
+  if account in data:
+    print("Please choose an option:")
     print("1. Withdraw")
     print("2. Deposit")
     print("3. Check Balance")
     print("4. Exit")
+    option = input()
+    while option not in ['1', '2', '3', '4']:
+      option = input("Sorry, that's an invalid option! Please choose 1, 2 or 3: ")
 
-def show_mainmenu(option):
+    if option == '1':
+      model.withdraw(account)
+    elif option == '2':
+      model.deposit(account)
+    elif option == '3':
+      model.balance(account)
+    elif option == '4':
+      return
 
-    print(f"Hello. Please choose an option: {option}")
+
+def show_mainmenu():
+
+    print("Hello. Please choose an option:")
     print("1. Create an account")
     print("2. Login")
     print("3. Exit Terminal")
 
-    if option == "2":
-        show_loginmenu(option)
-
+    option = input()
+    while option not in ['1', '2', '3']:
+        option = input("Sorry, invalid input. Try again.")
+    return option
 
 def get_input():
     return input("Your choice: ")
