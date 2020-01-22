@@ -12,12 +12,16 @@ def get_account():                  #prompts user for account number
 
 def show_loginmenu():               #When the user logs in, and is prompted what todo
   account = input('Enter Account #: ')
+  pin_num = input("Enter Pin #: ")
   # check if account number is in the json file
   if not account.isnumeric():
     print("Invalid input. Account Number must have numeric values")
     return
+    if not pin_num.isnumeric():
+        print("Invalid input. Pin # must have numeric values!")
+        return
   data = model.load()
-  if account in data:
+  if account in data and pin_num in data[account]["pin_num"]: #checks account num and pin number in data
     print("Please choose an option:")
     print("1. Withdraw")
     print("2. Deposit")

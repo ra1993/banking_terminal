@@ -18,20 +18,13 @@ def create_account():   #create account
     while not account.isnumeric():
         print("Account is a number")
         account = input("That account number contains non-numeric entries, please numbers only!")
-        # data[account]["First_name"] = first_name
-        # data[account]["Last Name"] = last_name
-        # data[account]["Pin Num"] = pin_num
-        #data[account]["balance"] = []
-    data[account]={"balance":[], "First_name":first_name, "Last_name": last_name, "pin_num":pin_num}
-   # print(data)
-    #print(first_name, last_name, pin_num)
+    data[account]={"balance": 0, "First_name":first_name, "Last_name": last_name, "pin_num":pin_num}
     option = input("Would you like to deposit $25? Y/N")
     if option == "Y" or option == "y":
-            data[account] = {"balance": 25}
+            data[account]={"balance": 25, "First_name":first_name, "Last_name": last_name, "pin_num":pin_num}
     elif option == "N" or option == "n":
         save(data)
     save(data)
-
 
 def deposit(account):
     data = load()
@@ -44,8 +37,9 @@ def deposit(account):
 def withdraw(account):
     data = load()
     current_balance = float(data[account]["balance"])
-    withdrawl = float(input("How much would you like to withdraw?"))
+    withdrawl = float(input("How much would you like to withdraw? "))
     if withdrawl > current_balance:
+        current_balance = current_balance
         print("Error, you will overdraft your account!")
     else:
         current_balance -= withdrawl
@@ -59,8 +53,8 @@ def balance(account):
     print("-------------------------------------------")
     
 
-#add in other account creation details. 
+#add in other account creation details.  done
 #work on withdraw function      done
 #work on balance function       done
-#add in a pin number
+#add in a pin number            done
 #prompt to deposit 25 for accont creation    done
