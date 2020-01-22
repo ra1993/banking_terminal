@@ -1,16 +1,16 @@
 import model
 
-def get_option():
+def get_option():                   #recieves input from user
     print()
     print("Please choose an option")
     return option
 
-def get_account():
+def get_account():                  #prompts user for account number
     print()
     print("Enter account number:")
     return input()
 
-def show_loginmenu():
+def show_loginmenu():               #When the user logs in, and is prompted what todo
   account = input('Enter Account #: ')
   # check if account number is in the json file
   if not account.isnumeric():
@@ -37,7 +37,7 @@ def show_loginmenu():
       return
 
 
-def show_mainmenu():
+def show_mainmenu():            #first user prompt
 
     print("Hello. Please choose an option:")
     print("1. Create an account")
